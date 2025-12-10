@@ -1,0 +1,52 @@
+[
+  {
+    "question": "In divisive hierarchical clustering, what does the algorithm begin with?",
+    "answers": {
+      "a": "Each data point in a separate cluster",
+      "b": "All data points in one cluster",
+      "c": "A predefined number of clusters",
+      "d": "The optimal number of clusters"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "What is the main advantage of hierarchical clustering over K-means clustering?",
+    "answers": {
+      "a": "It does not require specifying the number of clusters in advance",
+      "b": "It is more computationally efficient",
+      "c": "It is less sensitive to the initial placement of centroids",
+      "d": "It can handle categorical data"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Which of the following methods is NOT a hierarchical clustering algorithm?",
+    "answers": {
+      "a": "Agglomerative clustering",
+      "b": "Divisive clustering",
+      "c": "K-means clustering",
+      "d": "Ward's method"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "What does the term 'dendrogram' refer to in hierarchical clustering?",
+    "answers": {
+      "a": "Data points",
+      "b": "A tree-like diagram illustrating the arrangement of clusters",
+      "c": "Centroids",
+      "d": "Clusters"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Which distance metric is commonly used in hierarchical clustering?",
+    "answers": {
+      "a": "Euclidean distance",
+      "b": "Manhattan distance",
+      "c": "Minkowski distance",
+      "d": "Cosine similarity"
+    },
+    "correctAnswer": "a"
+  }
+]

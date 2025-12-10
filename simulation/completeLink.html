@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <div class="container" id="box" style="width: 800px;">
+   
+        <div id="myModal" class="modal" style="width:800px;height:570px;padding-top:30px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;text-align: justify;">
+                        <li>Enter a value for each attribute in the <b>ATTRIBUTES</b> section and then click the <b style="color:#004E86">SUBMIT</b> button to incorporate the values into the table.</li>
+                        <li>Repeat the above step until you've completed this process for 5 rows.</li>
+                        <li>Click on <b style="color:#004E86">NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                        <li>Calculate the Euclidean distance for the highlighted cell using the provided calculator (take X & Y from the table). Next, click on the corresponding cell in the matrix and enter the calculated distance.</li>
+                        <li>Repeat the step 4 until you've completed the matrix. (Mirrored values will be automatically filled)</li>
+                        <li>Find the minimum element in distance matrix by clicking on the <b style="color:#004E86">MIN</b> button.</li>
+                        <li>Now, click on the <b style="color:#004E86">MERGE</b> button. This will form clusters of elements corresponding to the minimum value and update the matrix by recalculating pairwise distances, considering the complete linkage criterion.</li>
+                        <li>Repeat step 6-7 until only one cluster remains.</li>
+                        <li>Now, click on the <b style="color:#004E86">NEXT</b> button to plot the dendrogram.</li>
+                        <li>Finally, click on the <b style="color:#004E86">PLOT</b> button.</li>
+                    </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                style="display: flex; border-right: 2px solid #F5F5F5; color: white;  border-top-left-radius: 10px;
+                cursor:not-allowed;">
+                    <div class="tab-create">
+                        <a class="tab-text" style="cursor:not-allowed;">CREATE</a>
+                    </div>
+                    <img src="images/create.png" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5;color: black;background-color:#ffd964;cursor:not-allowed;">
+                    <div class="tab-create" style="background-color:#ffd964;cursor:not-allowed;">
+
+                        COMPUTE
+                    </div>
+                    <img src="images/calculator1.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        PLOT
+                    </div>
+                    <img src="images/network1.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            <div class="sec-con-column">
+                <!-- controls -->
+                <div class="ex1-left-side-container">
+                    <div class="sub-div-control" id="training-control" style="margin-left:10px;height: 445px;">
+                        <header id="trainToTest" class="header-box">DISTANCE MATRIX</header>
+                        <div class="control-panel">
+                            <div id="tablesContainer">
+                                <table id="dataSetTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Point</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>                                          
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">1</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">2</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">3</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">4</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">5</td>   
+                                        </tr>
+                                    </thead>
+                                    <tbody id="for11">
+                                        <!-- Data point coordinates will be dynamically populated here -->
+                                    </tbody>
+                                </table>
+                                <br>
+                                <div id="clusters-div">
+                                    <p class='text-effect' style="margin-left:5px">CLUSTER:</p>
+                                    <p id="clusters" style="font-size:18px;color:#333;margin-left:5px"></p>
+                                </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+            </div>
+
+            <!-- table -->
+            <div class="sec-con-table" style="margin: 10px;">
+
+                <div class="sub-div-cal" style="min-height: 250px;margin-top: 15px;">
+                    <header class="header-box">DATASET</header>
+                    <div id="tablesContainer" style="margin: auto;margin-top: 8px;">
+                        <table id="dataset-table">
+                            <!-- <thead> -->
+                            <tr>
+                                <th style="width:50px"><strong>P. No.</strong></th>
+                                <th style="width:50px"><strong>X</strong></th>
+                                <th style="width:50px"><strong>Y</strong></th>
+                            </tr>
+                            
+                        </table>
+                    </div>
+            </div>
+
+                <div class="sub-div-cal" style="min-height: 185px;margin-top: -10px;">
+                    <header class="header-box">CALCULATOR</header>
+                    <div id="tablesContainer" >
+                        <div id="distance_id" style="margin-left: 10px; width: 400px;margin-top: 30px;">
+                            <b id="heading2" style="position: absolute;font-size: 24px;">D =  </b>
+                            <div id="input-value">
+                            <b style="position: absolute;font-size: 24px;margin-left:40px">√(</b>
+                            <input max="10" min="0" type="number" id="pointX2" placeholder="X₂" style="width: 40px;text-align: center;margin-left: 70px;margin-top:6px "/> 
+                            <b style="margin-left: 10px;position: absolute;margin-top:6px "> - </b>
+                            <input max="10" min="0" type="number" id="pointX1" placeholder="X₁" style="width: 40px;text-align: center;margin-left: 25px;position: absolute;margin-top:6px "/>
+                            <b style="position: absolute;font-size: 24px;margin-left:80px;">)</b>
+                            <b style="position: absolute;margin-left:90px;"><sup>2</sup></b>
+                            <b style="position: absolute;font-size: 24px;margin-left:105px">+</b>
+                            <b style="position: absolute;font-size: 24px;margin-left:125px">(</b>
+                            <input max="10" min="0" type="number" id="pointY2" placeholder="Y₂" style="width: 40px;text-align: center;margin-left: 140px;margin-top:6px "/> 
+                            <b style="margin-left: 10px;position: absolute;margin-top:6px "> - </b>
+                            <input max="10" min="0" type="number" id="pointY1" placeholder="Y₁" style="width: 40px;text-align: center;margin-left: 25px;position: absolute;margin-top:6px "/>
+                            <b style="position: absolute;font-size: 24px;margin-left:80px;">)</b>
+                            <b style="position: absolute;margin-left:90px;"><sup>2</sup></b>
+                          
+                        </div>
+                        </div>
+                </div>
+                <div class="calculator-panel-button-container" style="margin-top:50px">
+                    <button class="button" id="submit-button" onclick="submitDistance()"
+                        style="margin-left: 3px;width:80px;font-size: 16px;">SUBMIT</button>
+                    <button class="button" id='resetx'  title="clears the X₂ & X₁ value." onclick="resetx()"
+                        style="margin-left: 3px;width:80px;font-size: 16px;">RESET</button>
+                </div>
+            </div>
+
+            <div class="sub-div-cal" style="min-height: 185px;margin-top: -10px;display:none">
+                <header class="header-box">FIND MAX</header>
+                <div id="tablesContainer" >
+                    <div id="distance_id" style="margin-left: 10px; width: 400px;margin-top: 30px;">
+                        <b id="heading2" style="position: absolute;font-size: 24px;">D =  </b>
+                        <div id="input-value">
+                        <b style="position: absolute;font-size: 24px;margin-left:40px">√(</b>
+                        <input max="10" min="0" type="number" id="pointX2" placeholder="X₂" style="width: 40px;text-align: center;margin-left: 70px;margin-top:6px "/> 
+                        <b style="margin-left: 10px;position: absolute;margin-top:6px "> - </b>
+                        <input max="10" min="0" type="number" id="pointX1" placeholder="X₁" style="width: 40px;text-align: center;margin-left: 25px;position: absolute;margin-top:6px "/>
+                        <b style="position: absolute;font-size: 24px;margin-left:80px;">)</b>
+                        <b style="position: absolute;margin-left:90px;"><sup>2</sup></b>
+                        <b style="position: absolute;font-size: 24px;margin-left:105px">+</b>
+                        <b style="position: absolute;font-size: 24px;margin-left:125px">(</b>
+                        <input max="10" min="0" type="number" id="pointY2" placeholder="Y₂" style="width: 40px;text-align: center;margin-left: 140px;margin-top:6px "/> 
+                        <b style="margin-left: 10px;position: absolute;margin-top:6px "> - </b>
+                        <input max="10" min="0" type="number" id="pointY1" placeholder="Y₁" style="width: 40px;text-align: center;margin-left: 25px;position: absolute;margin-top:6px "/>
+                        <b style="position: absolute;font-size: 24px;margin-left:80px;">)</b>
+                        <b style="position: absolute;margin-left:90px;"><sup>2</sup></b>
+                      
+                    </div>
+                    </div>
+            </div>
+            <div class="calculator-panel-button-container" style="margin-top:40px">
+                <button class="button"  id="submitd-button" onclick="submitMAXDistance()"
+                    style="margin-left: 3px;width:80px;font-size: 16px;">SUBMIT</button>
+                <button class="button" id='resetx' title="clears the value" onclick="resetx()"
+                    style="margin-left: 3px;width:80px;font-size: 16px;">RESET</button>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="control-panel-button-container" style="margin-top:495px">
+            <button class="button"  id="min-button" disabled onclick="findMin()"  style="margin-left: 3px;">MIN</button>
+            <button class="button"  id="merge-button" disabled onclick="merge()" style="margin-left: 3px;">MERGE</button>
+            <button class="button"  id="next-button" onclick="window.location.href='analyseComplete.html'" disabled  style="margin-left: 3px;">NEXT</button>
+            <button class="button" id='reset'  title="clears the inserted data."  onclick="window.location.reload()" style="margin-left: 3px;">RESET</button>
+        </div>
+        </div>
+  <!-- footer -->
+  <footer class="footer">
+    <span class="footer-text" style="margin-left: 274px;">© 2025 Virtual Labs, IIT Roorkee</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+
+<script src="js/script1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+
+</html>

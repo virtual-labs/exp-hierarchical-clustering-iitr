@@ -1,0 +1,543 @@
+* {
+    font-family: 'Times New Roman', Times, serif;   
+  }
+
+  .container {
+    width: 950px;
+    height: 634px;
+    border: 1px solid #004E86;
+    background-color: #F5F5F5;
+    /* position: absolute; */
+    position: relative;
+    cursor: pointer;  border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  
+  }
+  
+  .header {
+    width: 100%;
+    background-color: #004E86;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    height: 35px;  border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .dot {
+    height: 25px;
+    width: 25px;
+    background-color: #004E86;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .square {
+    width: 15px;
+    height: 15px;
+    background-color:#6EC3FF;
+    display: inline-block;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    overflow: hidden;
+  }
+  
+  .text-effect {
+ 
+    font-weight: bold; /* Set the font weight */
+    color: #004E86; /* Choose a color for the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow for depth */
+    position: relative; /* Set position relative for stacking */
+  
+  }
+  
+  .header-text {
+    font-size: 16px;
+  
+    color: white;
+  }
+  
+  .header-text:nth-child(1) {
+    padding-left: 20px;
+  }
+  
+  .header-text:nth-child(2) {
+    padding-right: 20px;
+  }
+  
+  .tab-create {
+    font-size: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+  
+  }
+  
+  .tabs {
+    display: flex;
+    width: 980px;
+    margin: auto;
+    margin-top: 0px;
+    height: 35px;
+  }
+  
+  .tab-text {
+    color: #FFC000;
+    text-decoration-line: none;
+  }
+  
+  .sec-con-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin: 10px;
+    width: 935px;
+    height: 100%;
+    /* margin: auto; */
+  }
+  
+  .sec-con {
+    display: flex;
+    /* flex-wrap: wrap; */
+    width: 400px;
+    height: 550px;
+    /* margin: auto; */
+  }
+  
+  .sec-con-table {
+    display: flex;
+    /* flex-wrap: wrap; */
+    width: 35%;
+    height: 100px;
+    margin-left: auto;
+  } 
+  
+  .sec-con-column {
+    display: flex;
+    flex-flow: column;
+    /* flex-wrap: wrap; */
+    width: 64%;
+    height: 100%;
+    /* margin: auto; */
+  }
+  
+  .sub-div {
+    width: 480px;
+    height: 280px;
+    margin-top: 10px;
+    margin: 10px;
+  }
+  
+  .sub-div-control {
+    width: 71%;
+    height: fit-content;
+    border: 0px solid #E5E7EB;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  }
+  
+  .data-div {
+    width: 20%;
+    display: flex;
+    flex-flow: column;
+    height: fit-content;
+    border: 0px solid #E5E7EB;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  }
+ 
+  .sub-div-table {
+    width: 38%;
+    height: 335px;
+    border: 0px solid #E5E7EB;
+    background-color: #FFFFFF;
+  border-radius: 10px;
+
+    margin: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  
+  .sub-div-agg
+  {
+    height: 471px; 
+    width: 70%;    
+    border: 0px solid #E5E7EB;
+  background-color: #FFFFFF;
+    position:absolute;
+    bottom: 45px; 
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    color:white;
+  }
+
+  
+  .header-box {
+    width: 100%;
+    background-color: #0070C0;
+    color: White;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 18px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .control-panel-button-container
+  {
+    position:absolute;
+    bottom: 50px; 
+    right: 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+
+/* CSS */
+.button {
+  color:#FFC000;
+  background-color: #004E86;
+  border: 0;
+  border-radius: 20px;
+
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Times New Roman', Times, serif;
+  width: 120px;
+  font-size: 20px;
+  outline: 0;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: 
+  0 -0.5em 0.5em transparent,
+  0 0.5em 0.5em transparent,
+  0 0.25em 0.3em -0.2em hsla(var(--hue), var(--sat), 50%, 0.46), 
+  0 0.25em 0.75em hsla(var(--hue), calc(var(--sat) - 10%), 40%, 0.3);
+}
+
+.button:before {
+  background-color: initial;
+  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+  border-radius: 125px;
+  content: "";
+  height: 50%;
+  left: 4%;
+  opacity: .5;
+  position: absolute;
+  top: 0;
+  transition: all .3s;
+  width: 92%;
+}
+
+.button:hover {
+  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  transform: scale(1.05);
+}
+
+
+
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+   
+  }
+
+  
+  
+  .footer {
+    width: 100%;
+    height: 4%;
+    background-color: #004E86;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .footer-text {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+    color: #FFC000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    width: 950px;
+    height: 550px;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);
+    border-radius: 10px;
+  }
+  
+  
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  @-webkit-keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0
+    }
+  
+    to {
+      top: 0;
+      opacity: 1
+    }
+  }
+  
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0
+    }
+  
+    to {
+      top: 0;
+      opacity: 1
+    }
+  }
+  
+  .close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #FFC000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #004E86;
+    color: #FFC000;
+  }
+  
+  .modal-body {
+    padding: 2px 16px;
+  }
+  
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #004E86;
+    color: #FFC000;
+  }
+  
+  
+  #myBtn:hover {
+    cursor: "pointer";
+  }
+  
+  
+  /*swal*/
+  .position-absolute {
+    position: absolute !important;
+    backdrop-filter: blur(6px);
+  border-radius: 10px;
+  }
+  
+  
+  
+  
+  /* controls */
+  .control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column;
+    height: 138px;
+  }
+  
+  .control-panel-button-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
+    width: 180px;
+  }
+  
+
+
+  #tablesContainer {
+    
+    height: 50%;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th{
+    background-color: #e5f5fe;
+    color:black;
+ /* border: 1px solid black;*/
+  }
+
+  th,
+  td {
+   /*  border: 0.5px solid white;*/
+    padding: 8px;
+    text-align: center;
+    width: auto;
+    font-size: 16px;
+  
+  }
+  
+  td{
+    color:black;
+  }
+  
+  #box {
+    position: relative;
+  
+  }
+  
+  .swal-container {
+    width: 1000px;
+    height: 630px;
+    padding: 0px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(0%, 0%);
+    border-radius: 10px;
+  }
+  
+  .swal-container:target {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(0%, 0%);
+  
+  }
+  
+  
+  .swal-popup {
+    width: auto !important;
+    max-width: 60% !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+
+.position-absolute {
+    
+  position: absolute !important;
+  backdrop-filter: blur(6px);
+
+}
+.swal2-popup {
+  font-size: 1rem !important;
+  font-family: Georgia, serif;
+}
+
+ /* Style the container for the vertical tabs */
+ .tab-container {
+  display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 216px;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+/* Style the vertical tabs */
+.tab {
+  overflow: hidden;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: #0070C0;
+  color:white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  width:100%;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* Change background color of the tab buttons on hover */
+.tab button:hover {
+  background-color: #FFC000;
+  color:black;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 5px;
+  border: 0px solid #E5E7EB;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* Show the tab content when hovering over the tab button */
+.tab button.active + .tabcontent {
+  display:flex;
+}
+
+.tab button.active
+{
+  background-color: #FFC000;
+  color:black;
+}
+

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <div class="container" id="box">
+   
+        <div id="myModal" class="modal" style="padding-top: 30px;height:573px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                        <ol type="1" style="font-size: 20px;text-align: justify;">
+                            <li>Calculate the Euclidean distance for the highlighted cell using the provided calculator (take X₁ & X₂ from the table). Next, click on the corresponding cell in the matrix and enter the calculated distance.</li>
+                            <li>Repeat the step 1 until you've completed the matrix. (Mirrored values will be automatically filled)</li>
+                            <li>Identify the two clusters with the smallest maximum pairwise distance by clicking on the <b style="color:#004E86">MIN</b> button.</li>
+                            <li>Click the <b style="color:#004E86">MERGE</b> button to combine the two clusters from step 3 into a single cluster & update the matrix by recalculating pairwise distances, considering the single linkage criterion</li>
+                            <li>Repeat step 3-4 until only one cluster remains.</li>
+                            <li>Now, click on the <b style="color:#004E86">NEXT</b> button to plot the dendrogram.</li>
+                            <li>Finally, click on the <b style="color:#004E86">PLOT</b> button.</li>
+                          </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000;  border-top-left-radius: 10px;
+                cursor:not-allowed;">
+                    <div class="tab-create">
+                        <a class="tab-text" style="cursor:not-allowed;">CHOOSE</a>
+                    </div>
+                    <img src="images/select1.png" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5;color: #004E86;background-color:#ffd964;cursor:not-allowed;">
+                    <div class="tab-create" style="background-color: #ffd964;cursor:not-allowed;">
+
+                        COMPUTE
+                    </div>
+                    <img src="images/calculator1.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        PLOT
+                    </div>
+                    <img src="images/dendrogram1.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            <div class="sec-con-column">
+                <!-- controls -->
+                <div class="ex1-left-side-container">
+                    <div class="sub-div-control" id="training-control">
+                        <header id="trainToTest" class="header-box">DISTANCE MATRIX</header>
+                        <div class="control-panel">
+                            <div id="tablesContainer" >
+                                <table id="dataSetTable">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>P1=18</th>
+                                            <th>P2=22</th>
+                                            <th>P3=25</th>
+                                            <th>P4=27</th>
+                                            <th>P5=42</th>
+                                            <th>P6=43</th>                                           
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P1=18</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P2=22</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P3=25</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P4=27</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P5=42</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">P6=43</td>   
+                                        </tr>
+                                    </thead>
+                                    <tbody id="for11">
+                                        <!-- Data point coordinates will be dynamically populated here -->
+                                    </tbody>
+                                </table>
+<br>
+                            <div id="clusters-div">
+                                <p class="text-effect" style="font-size:20px;margin-left:5px">CLUSTER:</p>
+                                <p id="clusters" style="font-size:18px;color:#333333;margin-left:5px"></p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+
+            </div>
+            <!-- table -->
+            <div class="sec-con-table">
+                <div class="sub-div-formula">
+                    <header class="header-box">FORMULA</header>
+                    <div class="equation text-effect" style="color:#004E86;margin-left: 10px;">Euclidean Distance:</div>
+                            <div class="equation" title="Euclidean Distance" style="text-align: center;"> √(X<sub>2</sub> – X<sub>1</sub>)² </div>
+                            <p style="margin-left:10px;color:#004E86">Where, X<sub>1</sub> & X<sub>2</sub> are data points.</p>
+                </div>
+
+                <div class="sub-div-cal">
+                    <header class="header-box">CALCULATOR</header>
+                    <div id="tablesContainer" >
+                        <div id="distance_id" style="margin-left: 40px; width: 400px;margin-top: 40px;">
+                            <b id="heading2" class="text-effect" style="position: absolute;font-size: 24px;">Euclidean Distance =  </b>
+                            <div id="input-value">
+                            <b style="position: absolute;font-size: 24px;margin-left:220px">√(</b>
+                            <input max="10" min="0" type="number" id="point2" placeholder="X₂" style="width: 43px;text-align: center;margin-left: 250px;margin-top:6px "/> 
+                            <b style="margin-left: 10px;position: absolute;margin-top:6px "> - </b>
+                            <input max="10" min="0" type="number" id="point1" placeholder="X₁" style="width: 43px;text-align: center;margin-left: 25px;position: absolute;margin-top:6px "/>
+                            <b style="position: absolute;font-size: 24px;margin-left:85px;">)</b>
+                            <b style="position: absolute;margin-left:93px;"><sup>2</sup></b>
+                           
+                          
+                        </div>
+                        </div>
+                </div>
+                <div class="calculator-panel-button-container">
+                    <button class="button" id="submit-button" onclick="submitDistance()"
+                        style="margin-left: 3px;">SUBMIT</button>
+                    <button class="button" id='resetx'  title="clears the X₂ & X₁ value." onclick="resetx()"
+                        style="margin-left: 3px;">RESET</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-panel-button-container">
+            <button class="button"  id="min-button" disabled onclick="findMin()"  style="margin-left: 3px;">MIN</button>
+            <button class="button"  id="merge-button" disabled onclick="merge()" style="margin-left: 3px;">MERGE</button>
+            <button class="button" id='reset'  title="clears the inserted data." onclick="window.location.reload()" style="margin-left: 3px;">RESET</button>
+            <button class="button"  id="NEXT" onclick="window.location.href='analyseSingle.html'" disabled  style="margin-left: 3px; cursor: not-allowed;">NEXT</button>
+        </div>
+        </div>
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+        <script src="js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+
+</html>
