@@ -1,13 +1,155 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<html lang="en">
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="container" id="box">
+        <div id="myModal" class="modal" style="padding-top: 200px;height:400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;">
+                        <li>Select the desired <b>Algorithm</b>.</li>
+                        <li>Click on the <b>SUBMIT</b> button to start the simulation.</li>
+                        
+                    </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- header -->
+        <header class="header">
+          
+            <a class="header-text" id="myBtn" onclick="toblock()" style="padding-top: 8px;color:white;font-weight: bold;" href="#">INSTRUCTIONS</a>
+        </header>
+        <body>
+            <br><br>
+            <div style="margin-top: 2in; margin-left: 0in;">
+                <center>
+            <h2 class="text-effect">Select the clustering algorithm:
+                <select style="font-size: medium;" class="inp" id="nvalue">
+                    <option value="NULL" >NULL</option>
+                    <option value="1">Agglomerative Clustering</option>
+                    <option value="2">Divisive Clustering</option>
+                   
+            </select>
+           <button class="button" onclick="Submit()" id="submit-button" style=" margin-left: 0.3in;"><b>SUBMIT</b> </button></h2>
+            </center>
+            
+        </div>
+
+        </body>
+
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script>
+
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var modalBtn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+modalBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+        function Submit(){
+            
+
+        const myContainer = document.getElementById('box');
+        Swal.fire({
+            icon: 'info',
+            title: "Click on the COMPUTE tab.",
+            allowOutsideClick: false,
+            target: '.container',
+            customClass: {
+                container: "swal-container",
+             
+            },
+            
+            didOpen: () => {
+                const container = document.querySelector('.swal-container');
+                const containerWidth = myContainer.offsetWidth;
+                const containerHeight = myContainer.offsetHeight;
+
+                container.style.position = 'absolute';
+                container.style.width = '100%';
+                container.style.height = '100%';
+                container.style.top = '0';
+                container.style.left = '0';
+                container.style.padding = '0';
+                d=document.getElementById("nvalue").value
+
+                if(d=='NULL'){
+                    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Before proceeding, kindly select Clustering type.",
+        showCancelBotton:true,
+        allowOutsideClick: false,
+        target: '.container',
+        customClass: {                      // <------ customClass is an object!
+        container: 'position-absolute'
+              },     
+            });
+                }
+
+                if(d=='1'){
+                    window.location.href="agglo.html"
+                    document.getElementById("submit-button").disabled=true;
+                }
+               
+                if(d=='2'){
+                    window.location.href="divisive.html"
+                    document.getElementById("submit-button").disabled=true;
+                }
+
+            },
+        });}</script>
+
 </body>
+
 </html>

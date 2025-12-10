@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="container" id="box">
+        <div id="myModal" class="modal" style="padding-top: 200px;height:400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;">
+                        <li>Select the desired <b>Linkage</b> and click on the <b>SUBMIT</b> button.</li>
+                        <li>If single linkage is selected, then click on the <b>COMPUTE</b> tab to start the simulation.</li>
+                        <li>Otherwise, you will be redirected to create the dataset for complete linkage.</li>
+                        
+                    </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+
+                <!-- tabs -->
+                <div id="tab-1"   style="display: flex;border-right: 2px solid #F5F5F5;border-top-left-radius: 10px;background-color:#ffd964;cursor:not-allowed;">
+                    <div class="tab-create" style="background-color: #ffd964;border-top-left-radius: 10px;cursor:not-allowed;">
+                        <a class="tab-text"  style="color: #004E86;font-weight: bold;cursor:not-allowed;"> CHOOSE</a>
+                    </div>
+                    <img src="images/select.png"
+                            style="margin-top: 3px; margin-right: 10px; height: 85%;" alt=""   >
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000;cursor:not-allowed;">
+                    <div class="tab-create">
+                        <a class="tab-text" id="todecide" style="font-weight: bold;cursor:not-allowed;"> COMPUTE</a>
+                    </div>
+                    <img id="calimg" src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="" onclick="window.location.href='exp1.html'">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        <a class="tab-text" id="todecide" style="font-weight: bold;cursor:not-allowed;"> PLOT </a>
+                    </div>
+                    <img src="images/dendrogram1.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" onclick="toblock()" style="padding-top: 8px;color:white;font-weight: bold;" href="#">INSTRUCTIONS</a>
+        </header>
+        <body>
+            <br><br>
+            <div style="margin-top: 2in; margin-left: 0in;">
+                <center>
+            <h2 class="text-effect">Select the linkage type:
+                <select style="font-size: medium;" class="inp" id="nvalue">
+                    <option value="NULL" >NULL</option>
+                    <option value="1">Single Linkage</option>
+                    <option value="2">Complete Linkage</option>
+                   
+            </select>  <button class="button" onclick="Submit()" id="submit-button" style=" margin-left: 0.3in;"><b>SUBMIT</b> </button></h2>
+            </center>
+            
+        </div>
+
+        </body>
+
+
+
+
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script>
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var modalBtn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+modalBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+        function Submit(){
+            
+
+        const myContainer = document.getElementById('box');
+        Swal.fire({
+            icon: 'info',
+            title: "Click on the COMPUTE tab.",
+            allowOutsideClick: false,
+            target: '.container',
+            customClass: {
+                container: "swal-container",
+             
+            },
+            
+            didOpen: () => {
+                const container = document.querySelector('.swal-container');
+                const containerWidth = myContainer.offsetWidth;
+                const containerHeight = myContainer.offsetHeight;
+
+                container.style.position = 'absolute';
+                container.style.width = '100%';
+                container.style.height = '100%';
+                container.style.top = '0';
+                container.style.left = '0';
+                container.style.padding = '0';
+                d=document.getElementById("nvalue").value
+
+                if(d=='NULL'){
+                    Swal.fire({
+        icon: 'error',
+        title: 'Oops..',
+        text: "Before proceeding, kindly select Linkage type.",
+        showCancelButton:true,
+        allowOutsideClick: false,
+        target: '.container',
+        customClass: {                      // <------ customClass is an object!
+        container: 'position-absolute'
+              },     
+            });
+                }
+
+                if(d=='1'){
+             
+                    g=document.getElementById("todecide")
+                    g.href="singleLink.html"
+                    document.getElementById("tab-2").style.cursor = "pointer";
+                    document.getElementById("calimg").style.cursor = "pointer";
+                    document.body.getElementsByClassName("tab-create")[1].style.cursor = "pointer";
+                    document.body.getElementsByClassName("tab-text")[1].style.cursor = "pointer";
+                    document.getElementById("submit-button").disabled=true;
+                }
+               
+                if(d=='2'){
+                    window.location.href="compCreate.html";
+                    /*
+                    g=document.getElementById("todecide")
+                    g.href="compCreate.html"
+                    document.getElementById("tab-2").style.cursor = "pointer";
+                    document.getElementById("calimg").style.cursor = "pointer";
+                    document.body.getElementsByClassName("tab-create")[1].style.cursor = "pointer";
+                    document.body.getElementsByClassName("tab-text")[1].style.cursor = "pointer";
+                    document.getElementById("submit-button").disabled=true;
+                    */
+                }
+
+            },
+        });}</script>
+
+</body>
+
+</html>
