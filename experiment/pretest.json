@@ -1,39 +1,52 @@
-{
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+[
+  {
+    "question": "Which of the following linkage criteria is based on the minimum distance between any two points in the two clusters?",
+    "answers": {
+      "a": "Complete linkage",
+      "b": "Single linkage",
+      "c": "Average linkage",
+      "d": "Both a & b"
     },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
-}
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Which phase in hierarchical clustering involves combining the nearest clusters at each step?",
+    "answers": {
+      "a": "Initialization",
+      "b": "Iteration",
+      "c": "Agglomeration",
+      "d": "None of the Above"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "Which type of hierarchical clustering method works in a bottom-up approach?",
+    "answers": {
+      "a": "Agglomerative",
+      "b": "Divisive",
+      "c": "K-means",
+      "d": "Both a & b"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Complete linkage in hierarchical clustering is based on:",
+    "answers": {
+      "a": "The minimum distance between clusters",
+      "b": "The maximum distance between clusters",
+      "c": "The average distance between clusters",
+      "d": "None of the above"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "What are the two main types of hierarchical clustering?",
+    "answers": {
+      "a": "K-means and K-medoids",
+      "b": "Agglomerative and divisive",
+      "c": "Density-based and grid-based",
+      "d": "Model-based and graph-based"
+    },
+    "correctAnswer": "b"
+  }
+]
