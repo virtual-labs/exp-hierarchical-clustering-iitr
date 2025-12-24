@@ -12,7 +12,7 @@ It starts with each data point as its own cluster and then iteratively merges th
 
 * **Single Linkage:** For two clusters R and S, the single linkage returns the minimum distance between two points i and j such that i belongs to R and j belongs to S.
 <center>  
-<img style="mix-blend-mode: darken;" src="images\singlelatex.svg" alt="Single Linkage" width="50%">
+<img style="mix-blend-mode: darken;" width="250px" src="images\singlelatex.svg" alt="Single Linkage">
 </center>
 </br>
 <center>  
@@ -23,7 +23,7 @@ It starts with each data point as its own cluster and then iteratively merges th
 
 * **Complete Linkage:** For two clusters R and S, the complete linkage returns the maximum distance between two points i and j such that i belongs to R and j belongs to S.
 <center>  
-<img style="mix-blend-mode: darken;" src="images\completelatex.svg" alt="Complete Linkage" width="50%">
+<img style="mix-blend-mode: darken;" src="images\completelatex.svg" alt="Complete Linkage">
 </center>
 </br>
 <center>  
@@ -34,7 +34,7 @@ It starts with each data point as its own cluster and then iteratively merges th
 
 * **Average Linkage:** For two clusters R and S, first for the distance between any data-point i in R and any data-point j in S and then the arithmetic mean of these distances are calculated. Average Linkage returns this value of the arithmetic mean.
 <center>  
-<img style="mix-blend-mode: darken;" src="images\averagelatex.svg" alt="Average Linkage" width="50%">
+<img style="mix-blend-mode: darken;" src="images\averagelatex.svg" alt="Average Linkage">
 </center>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n<sub>R</sub> – Number of data-points in R<br>
@@ -59,7 +59,7 @@ The dendrogram is a tree-like structure mainly used to store each step as a memo
 A cluster at level 1, is the merger of its child cluster at level i+1.
 
 <center>  
-<img style="mix-blend-mode: darken;" src="images\dendrogram.png" width="70%" alt="Plotted Dendrogram">
+<img style="mix-blend-mode: darken;" src="images\dendrogram.png" alt="Plotted Dendrogram">
 <figcaption><strong>Fig. 4 Plotted Dendrogram</strong></figcaption>
 </center>
 </br>
@@ -88,7 +88,7 @@ Some of the applications in which Divisive Clustering is used : Market segmentat
 5. **Result:** The process continues recursively until each data point forms its own singleton cluster.
 
 <center>  
-<img style="mix-blend-mode: darken;" src="images\types.png" width="70%" alt="Agglomerative vs. Divisive Clustering">
+<img style="mix-blend-mode: darken;" src="images\types.png" alt="Agglomerative vs. Divisive Clustering">
 <figcaption><strong>Fig. 5 Agglomerative vs. Divisive Clustering</strong></figcaption>
 </center>
 </br>
