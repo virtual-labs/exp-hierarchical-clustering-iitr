@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="divisive.css" />
+    <script src="p5.js"></script>
+
+</head>
+
+<body>
+    <div class="container" id="box1">
+   
+        <div id="myModal" class="modal" style="height:580px;padding-top: 20px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;text-align: justify;">
+                        <li>Select the number of nodes for your graph and click on the <b style="color:#004E86">SUBMIT</b> button.
+                        <ol type="i">
+                            <li>If nodes equal 4, follow the below steps:
+                                <p><b>Create the complete graph by adding edges between every pair of nodes.</b></p>
+                                <ol type="a">
+                                    <li>Enter the values for the source node, destination node, and the weight/cost of the edge. Click on the <b style="color:#004E86">SUBMIT</b> button.</li>
+                                    <li>Repeat step 3 until you have added edges between every pair of nodes.</li>
+                                    <li>Finally, click on the <b style="color:#004E86">NEXT</b> button to initiate the computation phase for the divisive algorithm.</li>
+                                    <li>Now, jump to step 2.</li>
+                                </ol>
+                            </li>
+                            <li>If nodes equal 5, follow the below steps:
+                                <ol type="a">
+                                    <li>Click on the <b style="color:#004E86">START</b> button.</li>
+                                    <li>Now, click on the highlighted cell of the table (EDGE-COST) and enter the required value in the pop-up box.</li>
+                                    <li>Repeat the above step for every cell of the table.</li>
+                                    <li>Now, jump to step 2.</li>
+                                </ol>
+
+                            </li>
+                        </ol>
+                    </li>
+                    <li>Compute the Minimum Spanning Tree (MST) using <b>Kruskal's algo.</b> for the given adjacency matrix by clicking on the <b style="color:#004E86">DRAW MST</b> button.</li>
+                    <li>Enter the edge name from the sorted list of edge For example, 1-2 and then repeat this step until the MST is created.</li>
+                    <li>Progress to the next step by clicking on the <b style="color:#004E86">NEXT</b> button to identify "Singleton Clusters".</li>
+                    <li>Form a new cluster by breaking the link associated with the highest cost. Click on the <b style="color:#004E86">BREAK</b> button to proceed.</li>
+                    <li>Click on the <b style="color:#004E86">NEXT</b> button to navigate to the CLUSTERS page.</li>
+                    </ol>
+                    <b style="color:#004E86;font-size: 20px;">NOTE: </b> <span style="font-size: 18px;">Read the alerts carefully.</span><br>
+                    <b style="color:#004E86;font-size: 20px;">Cayley’s Formula:</b><span style="font-size: 18px;"> It states that the number of spanning trees in a complete graph with N vertices is N<sup>{N-2}</sup></span>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div id="imageModal" class="modal2">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2>As the cost of every edge is the same, we can have 16 possible MSTs. Please select the MST you want to use for clustering.</h2>
+              
+              <!-- Radio buttons for image selection -->
+              <div style="    display: flex;flex-flow: row;height:120px">
+                  <input type="radio" name="image" value="images/graph1.png" id="image1">
+                  <label class="labelModal" for="image1"><img src="images/graph1.png" alt="Image 1" height="120"></label>
+              
+                  <input type="radio" name="image" value="images/graph2.png" id="image2">
+                  <label class="labelModal" for="image2"><img src="images/graph2.png" height="120" alt="Image 2"></label>
+              
+                  <input type="radio" name="image" value="images/graph3.png" id="image3">
+                  <label class="labelModal" for="image3"><img src="images/graph3.png" height="120" alt="Image 3"></label>
+              
+                  <input type="radio" name="image" value="images/graph4.png" id="image4">
+                  <label class="labelModal" for="image4"><img src="images/graph4.png" height="120" alt="Image 4"></label>
+              </div>
+          <br>
+              <div style="    display: flex;flex-flow: row;height:120px">
+                  <input type="radio" name="image" value="images/graph5.png" id="image5">
+                  <label class="labelModal" for="image5"><img src="images/graph5.png" alt="Image 5" height="120"></label>
+              
+                  <input type="radio" name="image" value="images/graph6.png" id="image6">
+                  <label class="labelModal" for="image6"><img src="images/graph6.png" height="120" alt="Image 6"></label>
+              
+                  <input type="radio" name="image" value="images/graph7.png" id="image7">
+                  <label class="labelModal" for="image7"><img src="images/graph7.png" height="120" alt="Image 7"></label>
+              
+                  <input type="radio" name="image" value="images/graph8.png" id="image8">
+                  <label class="labelModal" for="image8"><img src="images/graph8.png" height="120" alt="Image 8"></label>
+              </div>
+          
+              <div style="    display: flex;flex-flow: row;height:120px">
+                <input type="radio" name="image" value="images/graph9.png" id="image9">
+                <label class="labelModal" for="image9"><img src="images/graph9.png" alt="Image 9" height="120"></label>
+            
+                <input type="radio" name="image" value="images/graph10.png" id="image10">
+                <label class="labelModal" for="image10"><img src="images/graph10.png" height="120" alt="Image 10"></label>
+            
+                <input type="radio" name="image" value="images/graph11.png" id="image11">
+                <label class="labelModal" for="image11"><img src="images/graph11.png" height="120" alt="Image 11"></label>
+            
+                <input type="radio" name="image" value="images/graph12.png" id="image12">
+                <label class="labelModal" for="image12"><img src="images/graph12.png" height="120" alt="Image 12"></label>
+            </div>
+
+            <div style="    display: flex;flex-flow: row;height:120px">
+                <input type="radio" name="image" value="images/graph13.png" id="image13">
+                <label class="labelModal" for="image913"><img src="images/graph13.png" alt="Image 9" height="120"></label>
+            
+                <input type="radio" name="image" value="images/graph14.png" id="image14">
+                <label class="labelModal" for="image14"><img src="images/graph14.png" height="120" alt="Image 14"></label>
+            
+                <input type="radio" name="image" value="images/graph15.png" id="image15">
+                <label class="labelModal" for="image15"><img src="images/graph15.png" height="120" alt="Image 15"></label>
+            
+                <input type="radio" name="image" value="images/graph16.png" id="image16">
+                <label class="labelModal" for="image16"><img src="images/graph16.png" height="120" alt="Image 16"></label>
+            </div>
+
+            <div style="display:flex;flex-flow: row;justify-content: space-evenly;align-items: center;">
+                 <button class="button" onclick="selectImage()">SUBMIT</button>
+            </div>
+
+                      </div>
+          </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                style="display: flex; ;background-color:#ffd964;border-top-left-radius: 10px;
+                cursor:not-allowed;border-right: 2px solid #F5F5F5">
+                    <div class="tab-create" id="create-create" style="background-color:#ffd964;border-top-left-radius: 10px;cursor:not-allowed;">
+                        <a class="tab-text" id="create-text" style="color: #004E86;cursor:not-allowed;">CREATE</a>
+                    </div>
+                    <img src="images/create1.png" id="createImg" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000;; cursor:not-allowed;">
+                    <div class="tab-create" id="comp-create" style="cursor:not-allowed;">
+                    COMPUTE
+                    </div>
+                    <img src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex;border-right: 2px solid #F5F5F5; color: #FFC000;; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        CLUSTERS
+                    </div>
+                    <img src="images/cluster.png" id="clusterimg" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container-divisive" id="nextContainer1" >
+
+                <!-- controls -->
+                <div class="sec-con-graph-row1" id="row-1">
+                    <div class="ex1-row1-side-container">
+                        <div class="sub-div-inputs" id="Nodes-control">
+                            <header class="header-box">CONTROLS</header>
+    
+                            <div class="control-panel" id="C1" style="display:block;margin-top:40px">
+                                <label for="numberofinp" style="padding: 8px;">
+                                    <b style="font-size: 24px;margin-left: 10px;color: #333333;">Select the no. of nodes:</b></label>
+                                  <select name="numberofinp" id="control-inp">
+                                    <option selected hidden>NULL</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                  </select>
+
+                            <div class="calculator-panel-button-container" style="margin-top:90px">
+                             <button class="button"  id="submit-button" onclick="submitNodes()"  style="margin-left: 3px;">SUBMIT</button>
+                            <!--button class="button" id='resetN' onclick="window.location.href='divisive.html'" disabled style="margin-left: 3px;">RESET</button-->
+                             </div>
+                        </div>
+                       
+                        <div class="control-panel1" id="C2" style="display:none">
+                            <div class="Graph-value-input-container">
+                                <label for="" class="labels" 
+                                >Source:</label
+                              >
+                              <input
+                                class="controller-inputs"
+                                min="1"
+                                max="4"
+                                id="source"
+                                type="number"
+                              />
+                            </div>
+                            
+                            <div class="Graph-value-input-container">
+                                <label for="" class="labels" 
+                                >Destination:</label
+                              >
+                              <input
+                                class="controller-inputs"
+                                min="1"
+                                max="4"
+                                id="destination"
+                                type="number"
+                              />
+                            </div>
+                          
+                          <div class="Graph-value-input-container">
+                            <label for="cost" class="labels" 
+                            >Cost:</label
+                          >
+                          <input
+                            class="controller-inputs"
+                            name="cost"
+                            type="number"
+                            min="1"
+                            max="50"
+                            id="cost"
+                            title="range: 1 to 50"
+                          />
+                          </div>
+    
+                          
+                          <div class="calculator-panel-button-container" style="margin-top:10px">
+                            <button class="button"  id="submitE-button" onclick="submitEdges()"
+                                 style="margin-left: 3px;">SUBMIT</button>
+                            <button class="button" id='resetE'  title="clears the graph." disabled  onclick="resetCanva()"
+                                style="margin-left: 3px;">RESET</button>
+                                <button class="button" id='next'  disabled onclick="nextToCompute();"
+                                style="margin-left: 3px;">NEXT</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-div-matrix" id="matrix-control" style="display:none;    margin-right: 10px;">
+                        <header id="trainToTest" class="header-box">ADJACENCY MATRIX</header>
+                        <div class="control-panel">
+                            <div id="tablesContainer" >
+                                <table id="dataSetTable" style="margin-top:5px;margin-bottom: 5px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Node</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>                                   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">1</td>  
+
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">2</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">3</td>   
+                                        </tr>
+                                        <tr>
+                                            <td class="pr">4</td>   
+                                        </tr>
+                                    </thead>
+                                    <tbody id="for11">
+                                        <!-- Data point coordinates will be dynamically populated here -->
+                                    </tbody>
+                                </table>
+
+
+                        </div>
+                    </div>
+                   
+                </div>
+
+                    <div class="sub-div-create-graphs"> 
+                            <header class="header-box">GRAPH</header>
+                            <canvas id="canvas" width="500" height="250"></canvas>  
+                   </div>
+    
+                </div>
+            </div>
+
+               <div class="sec-con-graph-row2" id="def-div">
+                <div class="sub-div-term">
+                    <header class="header-box">DEFINITION</header>
+                    <p class='text-effect' style="margin-top: 10px;margin-left: 10px;font-size: 20px;">Complete Graph:</p> 
+                    <p style="margin-left: 20px;font-size: 16px;color:#333333">A simple graph with n vertices is called a complete graph if the degree of each vertex is n-1, that is, 
+                        one vertex is attached with n-1 edges or the rest of the vertices in the graph.</p>
+
+                        <p class='text-effect' style="margin-top: 10px;margin-left: 10px;font-size: 20px;">Spanning Tree:</p> 
+                    <p style="margin-left: 20px;font-size: 16px;color: #333333;">A spanning tree is a subset of Graph G, such that all the vertices are connected using minimum possible number of edges.
+                         Hence, a spanning tree does not have cycles and a graph may have more than one spanning tree.</p>
+                </div>  
+            </div>
+
+            <div class="sec-con-graph-row1" id="table-MST" STYLE="display:none;margin-top: -20px;height:45%">
+                <div class="ex1-row1-side-container">
+                    <div class="sub-div-Node4-Table" id="table-control" STYLE="height:270px;">
+                        <header class="header-box">SORTED EDGE LIST</header>
+        
+                        <table id="arranged-table" style="height:90%">
+                            <thead>
+                                <tr>
+                                    <th>S No.</th>
+                                    <th>EDGE</th>
+                                    <th>COST</th>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">1</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">2</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">3</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">4</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">5</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">6</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+        
+                    <div class="sub-div-MST" id="MST-control" style="height: 270px;">
+                        <header class="header-box">MINIMUM SPANNING TREE (MST)</header>
+                        <div id="sketch-holder" style="height:270px"></div>
+                        <canvas id="canvas2" width="500" height="250" style="display:none"></canvas> 
+                   </div>
+                </div>
+
+            </div>
+         
+            <div class="sec-con-row3" id="but" style="height: 5%;display:none" >
+                <div class="button-container" id="buttons-1" style="display:none">
+                    <button class="button" id='drawMST' onclick="drawMST()" style="margin-left: 3px;width:120px">DRAW MST</button>     
+                    <button class="button" id='resetMST'  disabled title="clears the MST." onclick="resetMST()" style="margin-left: 3px;">RESET</button>
+                    <button class="button"  id="NEXT" onclick="next()" disabled style="margin-left: 3px;">NEXT</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sec-con-container2" id="nextContainer2" style="display:none">
+
+            <div class="sec-con-row1" style="height:45%">
+                <div class="ex1-row1-side-container">
+                    <div class="sub-div-MST-graph" id="MST-graph">
+                        <header class="header-box">MST</header>
+                        <canvas id="canvasMST" width="420" height="220" style="border-radius:10px"></canvas>
+                    </div>
+
+                    <div class="sub-div-MST-table" id="cluster-control">
+                        <header class="header-box">TABLE</header>
+                        <table id="MST-table" style="    width: auto;
+                        margin: auto;
+                        margin-top: 50px;">
+                            <thead>
+                                <tr>
+                                    <th>S No.</th>
+                                    <th>EDGE</th>
+                                    <th>COST</th>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">1</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">2</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">3</td>
+                                    <td style="font-size: 12px;"></td>
+                                    <td style="font-size: 12px;"></td>
+                                </tr>
+                                
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="sec-con-row2" style="height:37%">
+                <div class="sub-div-graph-node-4" id="graph2-control" style="display:none">
+                    <header class="header-box">1<sup>st</sup> Edge Removed</header>
+                    <canvas id="canvas3" width="275" height="180"></canvas>
+                </div>
+                <div class="sub-div-graph-node-4" id="graph3-control" style="display:none">
+                    <header class="header-box">2<sup>nd</sup> Edge Removed</header>
+                    <canvas id="canvas4" width="275" height="180"></canvas>
+                </div>
+                <div class="sub-div-graph-node-4" id="graph4-control" style="display:none">
+                    <header class="header-box">3<sup>rd</sup> Edge Removed</header>
+                    <canvas id="canvas5" width="275" height="180"></canvas>
+                </div>
+                <br>
+                   
+            </div>
+           
+            <div class="sec-con-row3" style="height:8%">
+            <p id="cluster-id" style="font-size: 24px;margin-left:20px; color:#004E86;display:none;margin:5px"></p>            
+            </div>
+
+            <div class="button-container" id="buttons-2">
+                <button class="button" id='start2' onclick="enteredge()" style="margin-left: 3px;">BREAK</button>
+                <button class="button" id='reset2'  onclick="resetEdgeBreaker()" style="margin-left: 3px;">RESET</button>
+                <button class="button" id="NEXT2" onclick="next2()" disabled   style="margin-left: 3px;">NEXT</button>  
+            </div>
+        </div>
+
+        <div class="sec-con-container3" id="nextContainer3" style="display:none">
+
+            <div class="sec-cont3-row1">
+                <div class="ex1-row1-center-container">
+                    <div class="sub-div-matrix" id="MST-graph" style="margin:10px;height:275px">
+                        <header class="header-box">MST</header>
+                        <canvas id="canvas-Ana-MST" width="410" height="220"></canvas>
+                    </div>
+
+                    <div class="sub-div-matrix" id="MST-graph" style="margin:10px">
+                        <header class="header-box">CLUSTERS</header>
+                        <canvas id="canvas-cluster" width="410" height="220"></canvas>
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="button-container" id="buttons-2" style="margin-top: 250px;">
+                <button class="button" id='print' onclick="window.print()" style="margin-left: 3px;">PRINT</button>
+            </div>
+        </div>
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+        </div>
+        
+        <script src="diviCreateScript.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+
+</body>
+
+</html>

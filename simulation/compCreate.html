@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="completeStyle.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <div class="container" id="box">
+   
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;text-align: justify;">
+                        <li>Enter a value for each attribute in the <b>ATTRIBUTES</b> section and then click the <b style="color:#004E86">SUBMIT</b> button to incorporate the values into the table.</li>
+                        <li>Repeat the above step until you've completed this process for 5 rows.</li>
+                        <li>Click on <b style="color:#004E86">NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                        <li>Calculate the Euclidean distance for the highlighted cell using the provided calculator (take X & Y from the table). Next, click on the corresponding cell in the matrix and enter the calculated distance.</li>
+                        <li>Repeat the step 4 until you've completed the matrix. (Mirrored values will be automatically filled)</li>
+                        <li>Find the minimum element in distance matrix by clicking on the <b style="color:#004E86">MIN</b> button.</li>
+                        <li>Now, click on the <b style="color:#004E86">MERGE</b> button. This will form clusters of elements corresponding to the minimum value and update the matrix by recalculating pairwise distances, considering the complete linkage criterion.</li>
+                        <li>Repeat step 6-7 until only one cluster remains.</li>
+                        <li>Now, click on the <b style="color:#004E86">NEXT</b> button to plot the dendrogram.</li>
+                        <li>Finally, click on the <b style="color:#004E86">PLOT</b> button.</li>
+                    </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"   style="display: flex; border-right: 2px solid #F5F5F5;border-top-left-radius: 10px;background-color:#ffd964;cursor:not-allowed;">
+                    <div class="tab-create" style="background-color:#ffd964;border-top-left-radius: 10px;cursor:not-allowed;">
+                        <a class="tab-text"  style="color: #004E86;font-weight: bold;cursor:not-allowed;"> CREATE</a>
+                    </div>
+                    <img id="createimg" src="images/create1.png"
+                            style="margin-top: 3px; margin-right: 10px; height: 85%;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000;cursor:not-allowed;">
+                    <div class="tab-create">
+                        <a class="tab-text" id="todecide" style="font-weight: bold;cursor:not-allowed;"> COMPUTE</a>
+                    </div>
+                    <img id="calimg" src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="" onclick="window.location.href='exp1.html'">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid #F5F5F5; color: #FFC000; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        PLOT
+                    </div>
+                    <img src="images/network1.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            <div class="sec-con-column">
+                <!-- controls -->
+                <div class="ex1-left-side-container">
+                        <div class="sub-div-control" id="training-control">
+                            <header class="header-box" id="headerData"><strong>ATTRIBUTES</strong></header>
+                            <div class="control-panel">
+                                <div class="Data-set-x-value-input-container">
+                                    <lab class="control-input-heading"><strong>X:</strong></lab>
+                                    <input type="number" class="input-control" id="X" placeholder="x-axis"
+                                        oninput="limitDecimals(event)" min="1" title="Range: (1,10)">
+                                </div>
+                                <div class=" Data-set-x-value-input-container">
+                                    <lab class="control-input-heading"><strong>Y:</strong></lab>
+                                    <input type="number" class="input-control" id="Y" placeholder="y-axis"
+                                        oninput="limitDecimals(event)" title="Range: (1,10)">
+                                </div>
+
+                            </div>
+                        </div>
+                   
+                         <!-- graph -->
+                <div class="sub-div-plot" id="graphId">
+                    <header class="header-box"><strong>GRAPH</strong></header>
+                    <div id="chart-container">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+            <!-- table -->
+            <div class="sec-con-table">
+                <div class="sub-div-table">
+                    <header class="header-box">OBSERVATION TABLE</header>
+                    <div id="tablesContainer">
+                        <table id="data-table">
+                            <!-- <thead> -->
+                            <tr>
+                                <th><strong>S. No.</strong></th>
+                                <th><strong>X</strong></th>
+                                <th><strong>Y</strong></th>
+                                <th id="deleteButton"><strong>DELETE</strong></th>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+
+                <div class="control-panel-button-container">
+                    <button class="button" id="sub-button" onclick="addDataPoint()" style="margin-left: 3px;">SUBMIT</button>
+                    <button class="button" id="next-button" onclick="window.location.href='completeLink.html'" disabled  style="margin-left: 3px;">NEXT</button>
+                    <button class="button" id='reset'  title="clears the inserted data."  onclick="window.location.reload()" style="margin-left: 3px;">RESET</button>
+                </div>
+
+        </div>
+
+
+        </div>
+  <!-- footer -->
+  <footer class="footer">
+    <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+</footer>
+<script>
+
+    validateInputX();
+function validateInputX() {
+    var inputValue = document.getElementById("X").value;
+
+    if (inputValue.includes("+") || inputValue.includes("-") || inputValue.includes("e")) {
+        return false;
+    }
+
+    return true;
+}
+validateInputY();
+function validateInputY() {
+    var inputValue = document.getElementById("Y").value;
+
+    if (inputValue.includes("+") || inputValue.includes("-") || inputValue.includes("e")) {
+         return false;
+    }
+
+    return true;
+}
+
+const inputElements = document.getElementsByClassName('input-control');
+
+// Add a click event listener to the input element
+inputElements[0].addEventListener('click', function () {
+    this.style.border= '';
+});
+inputElements[1].addEventListener('click', function () {
+    this.style.border= '';
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+<script src="compCreate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+
+</html>

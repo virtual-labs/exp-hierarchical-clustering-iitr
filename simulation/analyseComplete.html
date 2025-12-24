@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="compute.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js" integrity="sha512-yGgPLFnBGQP4L4+2eTbGj0uLoq+CLXmP2+c/hXWdmLYB9jEBfVGjxIqtvFneLCKATOZhDf2YPYG4uSEksWXp+g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+</head>
+
+<body>
+    <div class="container" id="box">
+        <!-- Instructions -->
+        <div id="myModal" class="modal" style="
+        height: 581px;padding-top:53px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                      <ol type="1" style="font-size: 20px;text-align: justify;">
+                        <li>Enter a value for each attribute in the <b>ATTRIBUTES</b> section and then click the <b style="color:#004E86">SUBMIT</b> button to incorporate the values into the table.</li>
+                        <li>Repeat the above step until you've completed this process for 5 rows.</li>
+                        <li>Click on <b style="color:#004E86">NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                        <li>Calculate the Euclidean distance for the highlighted cell using the provided calculator (take X & Y from the table). Next, click on the corresponding cell in the matrix and enter the calculated distance.</li>
+                        <li>Repeat the step 4 until you've completed the matrix. (Mirrored values will be automatically filled)</li>
+                        <li>Find the minimum element in distance matrix by clicking on the <b style="color:#004E86">MIN</b> button.</li>
+                        <li>Now, click on the <b style="color:#004E86">MERGE</b> button. This will form clusters of elements corresponding to the minimum value and update the matrix by recalculating pairwise distances, considering the complete linkage criterion.</li>
+                        <li>Repeat step 6-7 until only one cluster remains.</li>
+                        <li>Now, click on the <b style="color:#004E86">NEXT</b> button to plot the dendrogram.</li>
+                        <li>Finally, click on the <b style="color:#004E86">PLOT</b> button.</li>
+                    </ol>
+                        
+                        </p>
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                    style="display: flex; border-right: 2px solid #F5F5F5;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        <a class="tab-text" style="color: #ffd964;cursor:not-allowed;"> CREATE</a>
+                    </div>
+                    <img src="images/create.png" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid #F5F5F5; color: #ffd964;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+
+                        COMPUTE
+                    </div>
+                    <img src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid #F5F5F5;color: #004E86;background-color:#ffd964;font-weight: bold; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        PLOT
+                    </div>
+                    <img src="images/dendrogram.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px;z-index: 100;" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            
+
+
+            <div class="sub-div-agg" style="bottom:110px">
+                <header class="header-box">DENDROGRAM</header>
+                    <div id="container" style="width:100%;height:100%"></div>
+            </div><br>
+            <br>
+            <br>
+           
+           
+           
+              <div class="tab-container">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Tab1')" ondblclick="closeTab(event,'Tab1')">DATA-POINTS</button>
+                    <div id="Tab1" class="tabcontent">
+                      <table id="dataset-table">
+               
+                        <tr>
+                            <th style="width:50px"><strong>P. No.</strong></th>
+                            <th style="width:50px"><strong>X</strong></th>
+                            <th style="width:50px"><strong>Y</strong></th>
+                        </tr>
+                        
+                    </table>
+                    </div>
+                    
+                    <button class="tablinks" onclick="openTab(event, 'Tab2')" ondblclick="closeTab(event,'Tab2')">DISTANCE</button>
+                    <div id="Tab2" class="tabcontent">
+                      <table id="distance-table">
+               
+                        <tr>
+                            <th style="width:110px"><strong>Cluster</strong></th>
+                            <th style="width:50px"><strong>Distance</strong></th>
+                            
+                        </tr>
+                        
+                    </table>
+                    </div>
+                    <button class="tablinks" onclick="openTab(event, 'Tab3')" ondblclick="closeTab(event,'Tab3')">CLUSTER</button>
+                    <div id="Tab3" class="tabcontent">
+                    <p id="cluster" style="font-size:18px;color:#333;margin-left:5px"></p>
+        </div>
+                </div>
+            </div>
+               
+
+            <div class="control-panel-button-container" style="    flex-flow: row;
+          
+            height: 30px;
+            width: 100%;
+            position: absolute;
+            margin-top: 700px;">
+                <button class="button" onclick="connect()" id="connect" style="text-align: center;">PLOT</button>
+                <button class="button" id="print" onclick="window.print()" disabled style="text-align: center;">PRINT</button>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+
+       
+        <script src="ext/d3.v3.min.js"></script>
+<script src="src/scripts/utilFunctions.js"></script>
+<script src="ext/jscolor.js"></script>
+<script src="ext/palette.js"></script>
+<script src="src/scripts/variables.js"></script>
+<script src="ext/svg-crowbar-2.js"></script>
+<script src="src/scripts/uiFunctions.js"></script>
+ 
+
+
+<script>
+     function alerts1(icon,title,html)
+{
+Swal.fire({
+icon: icon,
+title:title,
+html: html,
+allowOutsideClick: false,
+target: '.container',
+customClass: {
+        container: "swal-container",
+        popup: "swal-popup",
+        title: "swal-title",
+        content: "swal2-content",
+    },
+    didOpen: () => {
+        const container = document.querySelector(".swal-container");
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+
+        // Change font size based on container size
+        if (containerWidth >= 1000 && containerHeight >= 672) {
+            container.style.fontSize = "24px";
+        } else {
+            container.style.fontSize = "16px";
+        }
+        container.style.position = "absolute";
+        container.style.width = "100%";
+        container.style.height = "100%";
+        container.style.top = "0";
+        container.style.left = "0";
+        container.style.padding = "0";
+    }
+});
+}
+
+alerts1('info','PLOT DENDROGRAM!!!','Now, click on the <b style="color:#004E86">PLOT</b> button');
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+<script>
+   var serializedData = localStorage.getItem('objectToPass1'); // Retrieve the serialized table data from localStorage
+   var data = JSON.parse(serializedData);
+   console.log(data)
+
+   var serializedData2 = localStorage.getItem('objectToPass2'); // Retrieve the serialized table data from localStorage
+   var str = JSON.parse(serializedData2);
+   console.log(str)
+
+   document.getElementById('cluster').textContent=str;
+
+   var serializedData3 = localStorage.getItem('objectToPass3'); // Retrieve the serialized table data from localStorage
+   var points = JSON.parse(serializedData3);
+   console.log(points)
+
+   var serializedData4 = localStorage.getItem('objectToPass4'); // Retrieve the serialized table data from localStorage
+   var distance = JSON.parse(serializedData4);
+   console.log(distance)
+
+   var serializedData5 = localStorage.getItem('objectToPass5'); // Retrieve the serialized table data from localStorage
+var tableData1 = JSON.parse(serializedData5);
+var table = document.getElementById('dataset-table');
+
+for (var i = 0; i < tableData1.length; i++) {
+    var rowData = tableData1[i];
+    var row = table.insertRow(i+1);
+
+   for (var columnName in rowData) {
+    var cell = row.insertCell();
+
+    cell.textContent = rowData[columnName];
+    console.log(cell.textContent)
+  }
+}
+
+var table2 = document.getElementById('distance-table');
+
+for (var i = 0; i < distance.length; i++) {
+    var rowData1 = points[i];
+    var rowData2 = distance[i];
+    var row = table2.insertRow(i+1);
+
+    var cell1 = row.insertCell(0);
+    cell1.textContent = rowData1;
+
+    var cell2 = row.insertCell(1);
+    cell2.textContent = rowData2;
+
+}
+
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+
+    // Hide all tab content
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remove the "active" class from all tab buttons
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Show the specific tab content and mark the button as active
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+}
+
+function closeTab(evt,tabName) {
+    // Hide the tab content
+    document.getElementById(tabName).style.display = "none";
+     // Remove the "active" class from the tab button
+     evt.currentTarget.classList.remove("active");
+}
+
+function connect()
+{
+initUI();
+var data_json=data[3]
+loadFile(data_json);
+
+document.getElementById('connect').disabled=true;
+document.getElementById('print').disabled=false;
+}
+
+
+
+const myContainer = document.getElementById("box");
+// myContainer.style.padding="0px";
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var modalBtn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+modalBtn.addEventListener("click", function () {
+    modal.style.display = "block";
+});
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+});
+
+ 
+        const pageAccessedByReload = (
+            (window.performance.navigation && window.performance.navigation.type === 1) ||
+              window.performance
+                .getEntriesByType('navigation')
+                .map((nav) => nav.type)
+                .includes('reload')
+          );
+          if(pageAccessedByReload==true){
+              window.location.href="analyseComplete.html"
+          }
+          </script>
+</div>
+
+</body>
+</html>
